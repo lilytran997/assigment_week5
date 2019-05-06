@@ -5,10 +5,11 @@ import kotlinx.android.parcel.Parcelize
 
 
 class Movie {
+    @Parcelize
     data class ResultArray(
         val results: List<Results>
-    )
-
+    ): Parcelable
+    @Parcelize
     data class Results(
         val vote_count : Int,
         val id : Int,
@@ -24,5 +25,5 @@ class Movie {
         val adult : Boolean,
         val overview : String,
         val release_date : String
-    )
+    ): Parcelable
 }

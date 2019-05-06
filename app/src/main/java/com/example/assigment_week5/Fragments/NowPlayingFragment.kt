@@ -1,16 +1,17 @@
 package com.example.assigment_week5.Fragments
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.assigment_week5.*
 import com.example.assigment_week5.Adapter.ItemClickListenner
 import com.example.assigment_week5.Adapter.MovieAdapter
 
-import com.example.assigment_week5.R
 import com.example.assigment_week5.model.Movie
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_now_playing.*
@@ -75,7 +76,12 @@ class NowPlayingFragment : Fragment() {
     private val movieItemCLickListener = object : ItemClickListenner {
 
         override fun onItemCLicked(position: Int) {
-
+            var category = Category(categoryId = 1, categoryName = "MacBook")
+            var item = Item(imageId = 2, price = 30.0, title = "MacBook Pro", category = category)
+            val intent = Intent(activity, DetailsActivity::class.java)
+            intent.putExtra(MOVIE_KEY, movies[position])
+            intent.putExtra(CONSTANT_KEY, item)
+            startActivity(intent)
         }
     }
 }
