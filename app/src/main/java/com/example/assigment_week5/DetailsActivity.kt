@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
+import com.example.assigment_week5.model.CONSTANT_KEY
+import com.example.assigment_week5.model.Item
+import com.example.assigment_week5.model.MOVIE_KEY
 import com.example.assigment_week5.model.Movie
 import kotlinx.android.synthetic.main.activity_details.*
 

@@ -1,4 +1,4 @@
-package com.example.assigment_week5
+package com.example.assigment_week5.model
 
 /**
  * Created by Huu Hoang on 4/19/19.

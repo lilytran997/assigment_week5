@@ -11,8 +11,8 @@ import android.view.ViewGroup
 import com.example.assigment_week5.*
 import com.example.assigment_week5.Adapter.ItemClickListenner
 import com.example.assigment_week5.Adapter.MovieAdapter
+import com.example.assigment_week5.model.*
 
-import com.example.assigment_week5.model.Movie
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_now_playing.*
 import okhttp3.*
@@ -44,8 +44,50 @@ class NowPlayingFragment : Fragment() {
         list_movie.adapter = movieAdapter
           //set onclick item movie
         movieAdapter.setListenner(movieItemCLickListener)
+        swipeRefresh.setOnRefreshListener{
+            loadItems()
+        }
+        swipeRefresh.setColorSchemeResources(android.R.color.holo_blue_bright,
+            android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light)
 
     }
+    var movieFresh:ArrayList<Movie.Results> = ArrayList()
+    private fun loadItems() {
+        movieAdapter.clear()
+        addFresh()
+        onItemsLoadComplete()
+    }
+
+    private fun addFresh() {
+        val client = OkHttpClient()
+        val request = Request.Builder()
+            .url("https://api.themoviedb.org/3/movie/top_rated?api_key=7519cb3f829ecd53bd9b7007076dbe23")
+            .build()
+        client.newCall(request)
+            .enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    activity!!.runOnUiThread {
+                        call.cancel()
+                    }
+                }
+                override fun onResponse(call: Call, response: Response) {
+                    val json = response.body()!!.string()
+                    val datagson = Gson().fromJson(json, Movie.ResultArray::class.java)
+                    activity!!.runOnUiThread {
+                        for (i in datagson.results) {
+                            movieFresh.add(i)
+                        }
+                        movieAdapter.addAll(movieFresh)
+
+                    }
+                }
+            })
+    }
+
+    private fun onItemsLoadComplete() {
+        swipeRefresh.isRefreshing = false
+    }
+
     private fun addMovie() {
         val client = OkHttpClient()
         val request = Request.Builder()
@@ -77,7 +119,12 @@ class NowPlayingFragment : Fragment() {
 
         override fun onItemCLicked(position: Int) {
             var category = Category(categoryId = 1, categoryName = "MacBook")
-            var item = Item(imageId = 2, price = 30.0, title = "MacBook Pro", category = category)
+            var item = Item(
+                imageId = 2,
+                price = 30.0,
+                title = "MacBook Pro",
+                category = category
+            )
             val intent = Intent(activity, DetailsActivity::class.java)
             intent.putExtra(MOVIE_KEY, movies[position])
             intent.putExtra(CONSTANT_KEY, item)

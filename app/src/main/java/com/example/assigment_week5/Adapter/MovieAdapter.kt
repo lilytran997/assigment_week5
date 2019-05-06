@@ -25,6 +25,14 @@ class MovieAdapter(var items: ArrayList<Movie.Results>, private val context: Con
     fun setListenner(listener: ItemClickListenner){
         this.mListener = listener
     }
+    fun clear(){
+        items.clear()
+        notifyDataSetChanged()
+    }
+    fun addAll(list:ArrayList<Movie.Results>){
+        items.addAll(list)
+        notifyDataSetChanged()
+    }
 
     override fun onBindViewHolder(movieViewHolder: MovieViewHolder, position: Int) {
 
