@@ -9,24 +9,24 @@
     <ImageView
         android:id="@+id/movie"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:padding="10dp"
-        android:layout_width="150dp"
-        android:layout_height="200dp"
+        android:layout_marginStart="5dp"
+        android:padding="5dp"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
         tools:contentDescription="TODO" />
 
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/movie"
         android:fontFamily="serif"
         tools:text="Display Name"
         android:textAlignment="center"
         android:textColor="#ffff"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
     <TextView
         android:id="@+id/date"
