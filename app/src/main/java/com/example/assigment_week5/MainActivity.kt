@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
+import android.view.Menu
+import android.widget.SearchView
 import com.example.assigment_week5.Fragments.NowPlayingFragment
 import com.example.assigment_week5.Fragments.TopRateFragment
 
@@ -45,7 +47,27 @@ class MainActivity : AppCompatActivity() {
         })
 
     }
+/*
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
+        menuInflater.inflate(R.menu.main,menu)
+        val searchItem = menu!!.findItem(R.id.movie_search)
+        if (searchItem!=null){
+            val searchView = searchItem.actionView as SearchView
+            searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
+            })
+        }
+        return super.onCreateOptionsMenu(menu)
+    }
+*/
     private fun setStaticPageAdapter() {
         val myViewPagerAdapter: ViewStaticPageAdapter = ViewStaticPageAdapter(supportFragmentManager)
         myViewPagerAdapter.addFragment(NowPlayingFragment(),"Now Playing")

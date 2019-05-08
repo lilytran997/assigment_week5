@@ -17,7 +17,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bg_bar"
         app:tabSelectedTextColor="#FAFAFA"
-        app:tabTextColor="#FAFAFA"/>
+        app:tabTextColor="#FAFAFA"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <android.support.v4.view.ViewPager
         android:id="@+id/main_views"
         android:layout_width="match_parent"

@@ -61,7 +61,7 @@ class NowPlayingFragment : Fragment() {
     private fun addFresh() {
         val client = OkHttpClient()
         val request = Request.Builder()
-            .url("https://api.themoviedb.org/3/movie/top_rated?api_key=7519cb3f829ecd53bd9b7007076dbe23")
+            .url("https://api.themoviedb.org/3/movie/now_playing?api_key=7519cb3f829ecd53bd9b7007076dbe23")
             .build()
         client.newCall(request)
             .enqueue(object : Callback {
